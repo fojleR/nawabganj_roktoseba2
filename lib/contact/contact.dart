@@ -53,16 +53,23 @@ class _ContactState extends State<Contact> {
           if (index == 0) {
             _scaffoldKey.currentState!.openDrawer();
           } else if (index == 1) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeActivity(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo))
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+            Navigator.pushNamed(
+              context,
+              '/home',
+              arguments: {
+                'phoneNumber': widget.phoneNumber,
+                'loggedInUserInfo': widget.logedinUserInfo,
+              },
             );
           } else if (index == 2) {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Important(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
             );
           } else {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Profile(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),

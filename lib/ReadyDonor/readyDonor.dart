@@ -197,20 +197,27 @@ class _ReadyDonorState extends State<ReadyDonor> {
           if (index == 0) {
             _scaffoldKey.currentState!.openDrawer();
           } else if (index == 1) {
-            Navigator.push(
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(builder: (context) => HomeActivity(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
-            ).then((_) => Navigator.of(context).pop());
+              '/home',
+              arguments: {
+                'phoneNumber': widget.phoneNumber,
+                'loggedInUserInfo': widget.logedinUserInfo,
+              },
+            );
           } else if (index == 2) {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Important(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo,)),
-            ).then((_) => Navigator.of(context).pop());
+              MaterialPageRoute(builder: (context) => Important(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
+            );
           } else {
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Profile(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo,)),
-            ).then((_) => Navigator.of(context).pop());
+              MaterialPageRoute(builder: (context) => Profile(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
+            );
           }
         },
       ),

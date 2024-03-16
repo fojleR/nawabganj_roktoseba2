@@ -55,19 +55,23 @@ class _ImportantState extends State<Important> {
           if (index == 0) {
             _scaffoldKey.currentState!.openDrawer();
           } else if (index == 1) {
-            Navigator.pop(context);
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomeActivity(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo))
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+            Navigator.pushNamed(
+              context,
+              '/home',
+              arguments: {
+                'phoneNumber': widget.phoneNumber,
+                'loggedInUserInfo': widget.logedinUserInfo,
+              },
             );
           } else if (index == 2) {
-            // Navigator.pop(context);
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => Important(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
-            // );
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Important(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
+            );
           } else {
-            Navigator.pop(context);
+            Navigator.popUntil(context, ModalRoute.withName('/home'));
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Profile(phoneNumber: widget.phoneNumber, logedinUserInfo: widget.logedinUserInfo)),
